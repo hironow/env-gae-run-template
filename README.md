@@ -1,6 +1,5 @@
 # env-gae-run-template
 
-
     # Generate common dotenv file.
     APP_NAME=awesome GCP_PROJECT_DEV=my-dev-project RUN_REGION_DEV=us-central1 FOO_HOGE_DEV="dev-hoge" BAR_PIYO_DEV="dev-piyo" \
         bash gen-common-env.sh development
@@ -12,6 +11,8 @@
     # Generate application dotenv and yaml files.
     make gen-app-env
     make gen-app-yaml
+    
+    # Deploy to GCP
     GAE_VERSION=test make deploy-gae
     make deploy-run
 
@@ -31,6 +32,11 @@
 | bar      | APP_ENV, APP_NAME, APP_PIYO |
 | baz      | APP_ENV, APP_NAME           |
 
+
 ## refs.
 
 * [Cloud Run Region](https://cloud.google.com/run/docs/locations?hl=en)
+* [Cloud Run env variables](https://cloud.google.com/run/docs/reference/container-contract?hl=en#env-vars)
+* [GAE env variables](https://cloud.google.com/appengine/docs/standard/go/runtime?hl=en#environment_variables)
+* [Cloud Run metadata server](https://cloud.google.com/run/docs/reference/container-contract?hl=en#metadata-server)
+* [GAE metadata server](https://cloud.google.com/appengine/docs/standard/go/runtime?hl=en#metadata_server)
