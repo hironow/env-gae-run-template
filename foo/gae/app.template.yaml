@@ -1,0 +1,7 @@
+service: foo
+runtime: go113
+
+env_variables:
+  APP_ENV: "$APP_ENV"
+  APP_NAME: "$APP_NAME"
+  APP_HOGE: "$APP_HOGE"

@@ -1,0 +1,7 @@
+service: bar
+runtime: go113
+
+env_variables:
+  APP_ENV: "$APP_ENV"
+  APP_NAME: "$APP_NAME"
+  APP_PIYO: "$APP_PIYO"

@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: .
+      target: builder
+      dockerfile: ./api/run/Dockerfile
+    command: go run ./api/run/main.go
+    ports:
+      - "9090:${PORT:-8080}"
+    environment:
+      PORT: ${PORT:-8080}
+    env_file:
+      - ./common.env
+      - ./api/app.env
+
+  foo:
+    build:
+      context: .
+      target: builder
+      dockerfile: ./foo/run/Dockerfile
+    command: go run ./foo/run/main.go
+    environment:
+      PORT: ${PORT:-8080}
+    ports:
+      - "9091:${PORT:-8080}"
+    env_file:
+      - ./common.env
+      - ./foo/app.env
+
+  bar:
+    build:
+      context: .
+      target: builder
+      dockerfile: ./bar/run/Dockerfile
+    command: go run ./bar/run/main.go
+    ports:
+      - "9092:${PORT:-8080}"
+    environment:
+      PORT: ${PORT:-8080}
+    env_file:
+      - ./common.env
+      - ./bar/app.env
+
+  baz:
+    build:
+      context: .
+      target: builder
+      dockerfile: ./baz/run/Dockerfile
+    command: go run ./baz/run/main.go
+    ports:
+      - "9093:${PORT:-8080}"
+    environment:
+      PORT: ${PORT:-8080}
+    env_file:
+      - ./common.env
+      - ./baz/app.env
+
