@@ -7,9 +7,9 @@ services:
       dockerfile: ./api/run/Dockerfile
     command: go run ./api/run/main.go
     ports:
-      - "9090:${PORT:-8080}"
+      - "9090:9090"
     environment:
-      PORT: ${PORT:-8080}
+      PORT: "9090"
     env_file:
       - ./common.env
       - ./api/app.env
@@ -21,9 +21,9 @@ services:
       dockerfile: ./foo/run/Dockerfile
     command: go run ./foo/run/main.go
     ports:
-      - "9091:${PORT:-8080}"
+      - "9091:9091"
     environment:
-      PORT: ${PORT:-8080}
+      PORT: "9091"
     env_file:
       - ./common.env
       - ./foo/app.env
@@ -35,9 +35,9 @@ services:
       dockerfile: ./bar/run/Dockerfile
     command: go run ./bar/run/main.go
     ports:
-      - "9092:${PORT:-8080}"
+      - "9092:9092"
     environment:
-      PORT: ${PORT:-8080}
+      PORT: "9092"
     env_file:
       - ./common.env
       - ./bar/app.env
@@ -49,9 +49,9 @@ services:
       dockerfile: ./baz/run/Dockerfile
     command: go run ./baz/run/main.go
     ports:
-      - "9093:${PORT:-8080}"
+      - "9093:9093"
     environment:
-      PORT: ${PORT:-8080}
+      PORT: "9093"
     env_file:
       - ./common.env
       - ./baz/app.env
