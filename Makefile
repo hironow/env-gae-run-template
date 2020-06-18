@@ -32,15 +32,15 @@ gen-app-yaml-%: cmd-exists-envsubst gen-app-env-%
 	@echo "[$(*)] app.yaml generated."
 
 
-deploy-gae: cmd-exists-go cmd-exists-gcloud guard-GAE_VERSION  ## Deploy to GAE
+deploy-gae: cmd-exists-go  ## Deploy to GAE
 	@GO111MODULE=on go mod vendor
-	@GO111MODULE=off gcloud app deploy \
-		api/gae/app.yaml \
-		foo/gae/app.yaml \
-		bar/gae/app.yaml \
-		baz/gae/app.yaml \
-		--quiet --no-promote --version=$(GAE_VERSION)
+	@make -j deploy-gae-api deploy-gae-foo deploy-gae-bar deploy-gae-baz
 	@rm -rf ./vendor
+
+deploy-gae-%: cmd-exists-gcloud guard-GAE_VERSION
+	@GO111MODULE=off gcloud app deploy \
+		./$(*)/gae/app.yaml \
+		--quiet --no-promote --version=$(GAE_VERSION)
 
 
 deploy-run:  ## Deploy to Cloud Run
