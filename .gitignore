@@ -7,3 +7,4 @@ api/gae/app.yaml
 foo/gae/app.yaml
 bar/gae/app.yaml
 baz/gae/app.yaml
+vendor

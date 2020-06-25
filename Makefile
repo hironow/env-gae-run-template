@@ -17,6 +17,13 @@ guard-%:
 	@if [ -z '${${*}}' ]; then echo 'ERROR: environment variable $* not set' && exit 1; fi
 
 
+.PHONY: local-ci
+local-ci: cmd-exists-circleci  ## CircleCI local execute
+	circleci config process .circleci/config.yml > .circleci/config-2.0.yml
+	circleci local execute -c .circleci/config-2.0.yml --job shellcheck/check
+	rm .circleci/config-2.0.yml
+
+
 gen-app-env: guard-APP_ENV guard-APP_NAME  ## Generate dotenv for application
 	@make -j gen-app-env-api gen-app-env-foo gen-app-env-bar gen-app-env-baz
 
